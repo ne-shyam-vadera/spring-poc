@@ -47,7 +47,7 @@ public class JfaxDetails {
     private int serverChannel;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty(value="error_message")
+    @JsonProperty(value="message")
     private String message;
 
 

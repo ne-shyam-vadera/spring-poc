@@ -44,16 +44,8 @@ public class JfaxController {
 
     @DeleteMapping("/jfax/{serviceKey}")
     public ResponseEntity<Object>deleteJfax(@PathVariable Integer serviceKey) {
-
-        Optional<JfaxDetails> jfaxDetailsOptional = jfaxService.jfaxDetailsByServiceKey(serviceKey);
-
-        if (!jfaxDetailsOptional.isPresent()){
-            return ResponseEntity.notFound().build();
-        }else{
-            jfaxService.deleteJfaxDetails(serviceKey);
-            return ResponseEntity.ok().body("Record deleted of Service Key :"+serviceKey);
-        }
-
+            String result=jfaxService.deleteJfaxDetails(serviceKey);
+            return ResponseEntity.ok().body(new JfaxUtils().getErrorMessage(result));
     }
 
     @RequestMapping(value = "/jfax",method = RequestMethod.PUT)

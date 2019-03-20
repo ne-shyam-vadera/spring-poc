@@ -27,8 +27,14 @@ public class JfaxService {
         }
     }
 
-    public void deleteJfaxDetails(Integer serviceKey){
-        this.jfaxDao.deleteById(serviceKey);
+    public String deleteJfaxDetails(Integer serviceKey){
+        if(this.jfaxDao.existsById(serviceKey)){
+            this.jfaxDao.deleteById(serviceKey);
+            return "Record deleted successfully.";
+        }else{
+            return "Service Key :"+ serviceKey+ " does not exist.";
+        }
+
     }
 
     public JfaxDetails updateJfaxDetails(JfaxDetails jfaxDetails){
